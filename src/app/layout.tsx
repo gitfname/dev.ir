@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import NextUiProvider from '@/providers/NextuiProvider'
+import TopNavigation from '@/components/ui/TopNavigation'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +15,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className='dark'>
+        <NextUiProvider>
+          <div className='w-full h-screen overflow-hidden grid grid-cols-1 grid-rows-[max-content_1fr] dark:bg-black bg-gray-50'>
+            <TopNavigation />
+
+            <div className='overflow-y-auto '>
+              {children}
+            </div>
+          </div>
+        </NextUiProvider>
+      </body>
     </html>
   )
 }
